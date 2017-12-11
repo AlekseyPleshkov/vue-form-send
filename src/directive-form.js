@@ -1,6 +1,13 @@
 const Directive = {
 
   bind(el, binding) {
+    let options = {
+      // Callback function
+      callback: () => {}
+    }
+
+    options = Object.assign(options, binding.value)
+
     // Func for send data
     el.$onSubmit = (e) => {
       e.preventDefault()
@@ -30,6 +37,7 @@ const Directive = {
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         httpRequest.onload = function () {
           // func(form, httpRequest.responseText, httpRequest.status);
+          options.callback(httpRequest)
           console.log('send')
         }
         httpRequest.send(data)

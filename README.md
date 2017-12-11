@@ -17,11 +17,13 @@ Vue.use(VueFormSend)
 ## Usage
 
 ```html
-<form v-form-send='' action='./send.php' method='post'>
+<form v-form-send='{callback: functionName}' action='./send.php' method='post'>
   <input v-form-input='{length: 5}' name='phone' type='tel'/>
   <input v-form-input='{type: "checked"}' name='phone' type='tel'/>
   <button type='submit'>Send</button>
 </form>
 ```
+
+Function 'callback' calling after send data. Function return 'httpRequest'.
 
 If in input exist error, then add class 'error'
