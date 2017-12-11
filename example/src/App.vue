@@ -1,7 +1,7 @@
 <template lang='pug'>
 div#app
   h2 Form Send
-  form(v-form-send='' action='send.php' method='post')
+  form(v-form-send='{callback: test}' action='send.php' method='post')
     input(v-form-input='{length: 5}' type='tel' name='phone' placeholder='Phone number')
     input(v-form-input='{type: "checked"}' type='checkbox' name='test')
     button(type='submit') Send
@@ -9,7 +9,12 @@ div#app
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    test () {
+      console.log('test')
+    }
+  }
 }
 </script>
 
