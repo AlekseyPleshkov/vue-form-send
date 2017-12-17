@@ -12,7 +12,7 @@ const Directive = {
     el.$onSubmit = (e) => {
       e.preventDefault()
       let action = el.action
-      let data = {}
+      let data = ""
       let existErrorValidation = false
       let inputs = Array.from(e.target)
 
@@ -25,7 +25,7 @@ const Directive = {
             existErrorValidation = true
           } else {
             // add name and value to object data
-            data[input.name] = input.value
+            data += input.name + '=' + input.value + '&'
           }
         }
       })
