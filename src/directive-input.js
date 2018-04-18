@@ -4,6 +4,8 @@ const Directive = {
     let options = {
       // length or checked
       type: 'length',
+      // replacing char
+      replace: [],
       // Count char in value
       length: 0
     }
@@ -12,8 +14,15 @@ const Directive = {
 
     // Primitive validate
     el.$validation = () => {
+      let value = el.value
+
+      // Replacing all char in value
+      for (let char of options.replace) {
+        value = value.replace(new RegExp(char, 'g'), '')
+      }
+
       // Validate for length
-      if (options.type === "length" && el.value.length < options.length) {
+      if (options.type === "length" && value.length < options.length) {
         return false
       }
       // Validate for checked radio or checkbox
