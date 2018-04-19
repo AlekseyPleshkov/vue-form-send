@@ -3,6 +3,7 @@ div#app
   h2 Form Send
   form(v-form-send='{callback: test}' action='send.php' method='post')
     input(v-form-input='{length: 5, replace: ["_", "/"]}' type='tel' name='phone' placeholder='Phone number')
+    input(v-form-input='{length: 5, clean: true}' type='tel' name='phone' placeholder='Phone number')
     input(v-form-input='{type: "checked"}' type='checkbox' name='test')
     button(type='submit') Send
 </template>

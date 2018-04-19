@@ -32,6 +32,14 @@ const Directive = {
 
       // Send post data
       if (!existErrorValidation) {
+        // Cleaning input
+        inputs.forEach((input) => {
+          if (input.$clean) {
+            input.value = ''
+          }
+        })
+
+        // Send request
         let httpRequest = new XMLHttpRequest()
         httpRequest.open('POST', action)
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')

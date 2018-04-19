@@ -6,11 +6,16 @@ const Directive = {
       type: 'length',
       // replacing char
       replace: [],
+      // cleaning input after success send
+      clean: true,
       // Count char in value
       length: 0
     }
 
     options = Object.assign(options, binding.value)
+    
+    // Add tag for cleaning input after full validation
+    el.$clean = options.clean
 
     // Primitive validate
     el.$validation = () => {

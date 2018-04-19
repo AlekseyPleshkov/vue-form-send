@@ -20,6 +20,7 @@ Vue.use(VueFormSend)
 <form v-form-send='{callback: functionName}' action='./send.php' method='post'>
   <input v-form-input='{length: 5}' name='phone' type='tel'/>
   <input v-form-input='{length: 5, replace: ["-", "/"]}' name='phone' type='tel'/>
+  <input v-form-input='{length: 5, clean: true}' name='phone' type='tel'/>
   <input v-form-input='{type: "checked"}' name='phone' type='tel'/>
   <button type='submit'>Send</button>
 </form>
