@@ -13,6 +13,7 @@ const Directive = {
       e.preventDefault()
       let action = el.action
       let data = ""
+      let dataObj = {}
       let existErrorValidation = false
       let inputs = Array.from(e.target)
 
@@ -25,30 +26,30 @@ const Directive = {
             existErrorValidation = true
           } else {
             // add name and value to object data
+            input.$replace()
             data += input.name + '=' + input.value + '&'
+            dataObj[input.name] = input.value
           }
         }
       })
 
-      // Send post data
+      // Send request
       if (!existErrorValidation) {
+        let httpRequest = new XMLHttpRequest()
+        httpRequest.open('POST', action)
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        httpRequest.onload = function () {
+          options.callback(httpRequest, dataObj)
+          console.log('send')
+        }
+        httpRequest.send(data)
+
         // Cleaning input
         inputs.forEach((input) => {
           if (input.$clean) {
             input.value = ''
           }
         })
-
-        // Send request
-        let httpRequest = new XMLHttpRequest()
-        httpRequest.open('POST', action)
-        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        httpRequest.onload = function () {
-          // func(form, httpRequest.responseText, httpRequest.status);
-          options.callback(httpRequest)
-          console.log('send')
-        }
-        httpRequest.send(data)
       }
     }
 

@@ -37,6 +37,17 @@ const Directive = {
       return true
     }
 
+    // Replace symbols
+    el.$replace = () => {
+      let value = el.value
+      // Replacing all char in value
+      for (let char of options.replace) {
+        value = value.replace(new RegExp(char, 'g'), '')
+      }
+      el.value = value
+      return options.replace.length > 0
+    }
+
     // Indicator error valid
     el.$validationError = () => {
       el.classList.add('error')
