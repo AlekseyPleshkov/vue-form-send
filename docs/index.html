@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+  <title>Vue-Form-Send</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../dist/index.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .block {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 60px;
+    }
+
+    .form {
+      background-color: #e1e1e9;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .form input[type='text'] {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto 6px;
+      transition: border-color .5s ease;
+    }
+
+    .form input[type='checkbox'] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background-color: #fff;
+      border: 1px solid rgb(25, 106, 255);
+      display: inline-block;
+      margin: -4px 6px 0 0;
+      vertical-align: middle;
+      transition: background-color .5s ease;
+    }
+
+    .form input[type='checkbox']:checked {
+      background-color: rgb(25, 106, 255);
+    }
+
+    .form button {
+      color: #fff;
+      font-size: 18px;
+      width: 100%;
+      height: 48px;
+      border: 0;
+      background-color: rgb(25, 106, 255);
+      border-radius: 4px;
+      display: block;
+      margin: 0 auto 6px;
+      transition: border-color .5s ease;
+      margin-top: 20px;
+    }
+
+    .error {
+      border-color: red !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <div class='block'>
+      <form v-form-send='{success: successResult, fail: failResult}' class='form' action='./send.php' method='post'>
+        <input v-form-input='{length: 5}' name='phone' type='text' placeholder='Length > 5'/>
+        <input v-form-input='{length: 5, replace: ["-", "/"]}' name='phone' type='text' placeholder='Length > 5 and replace'/>
+        <input v-form-input='{length: 5, clean: true}' name='phone' type='text' placeholder='Length > 5 and clear'/>
+        <label>
+          <input v-form-input='{type: "checked"}' name='phone' type='checkbox'/> 
+          <span>Is checked?</span>
+        </label>
+        <button>Send</button>
+      </form>
+    </div>
+    
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: () => ({
+
+      }),
+      methods: {
+        successResult () {
+          console.log('success')
+        },
+        failResult () {
+          console.log('fail')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

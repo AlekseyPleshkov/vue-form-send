@@ -22,7 +22,7 @@ const Directive = {
       let value = el.value
 
       // Replacing all char in value
-      for (let char of options.replace) {
+      for (const char of options.replace) {
         value = value.replace(new RegExp(char, 'g'), '')
       }
 
@@ -34,6 +34,7 @@ const Directive = {
       if (options.type === "checked" && !el.checked) {
         return false
       }
+
       return true
     }
 
@@ -41,9 +42,9 @@ const Directive = {
     el.$replace = () => {
       let value = el.value
       // Replacing all char in value
-      for (let char of options.replace) {
+      options.replace.forEach(char => {
         value = value.replace(new RegExp(char, 'g'), '')
-      }
+      })
       el.value = value
       return options.replace.length > 0
     }

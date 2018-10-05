@@ -2,8 +2,10 @@ const Directive = {
 
   bind(el, binding) {
     let options = {
-      // Callback function
-      callback: () => {}
+      // Callback function if data success send
+      success: () => {},
+      // Callback function if data fail validation
+      fail: () => {}
     }
 
     options = Object.assign(options, binding.value)
@@ -11,14 +13,14 @@ const Directive = {
     // Func for send data
     el.$onSubmit = (e) => {
       e.preventDefault()
-      let action = el.action
-      let data = ""
+      const action = el.action
+      const inputs = Array.from(e.target)
+      let data = ''
       let dataObj = {}
       let existErrorValidation = false
-      let inputs = Array.from(e.target)
 
       // Get all inputs in form
-      inputs.forEach((input) => {
+      inputs.forEach(input => {
         if (input.$validation !== undefined) {
           // check validate
           if (!input.$validation()) {
@@ -38,18 +40,23 @@ const Directive = {
         let httpRequest = new XMLHttpRequest()
         httpRequest.open('POST', action)
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        httpRequest.onload = function () {
-          options.callback(httpRequest, dataObj)
-          console.log('send')
+        httpRequest.onload = () => {
+          options.success(httpRequest, dataObj)
+        }
+        httpRequest.onerror = () => {
+          options.fail(httpRequest, dataObj)
         }
         httpRequest.send(data)
 
         // Cleaning input
-        inputs.forEach((input) => {
+        inputs.forEach(input => {
           if (input.$clean) {
             input.value = ''
           }
         })
+      } else {
+        // Error send request
+        options.fail(null, dataObj)
       }
     }
 
