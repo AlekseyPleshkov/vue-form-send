@@ -14,6 +14,14 @@ import VueFormSend from 'vue-form-send'
 Vue.use(VueFormSend)
 ```
 
+#### SSR (Nuxt.js)
+
+```js
+import VueFormSend from 'vue-form-send/dist/ssr.index'
+
+Vue.use(VueFormSend)
+```
+
 ## Usage
 
 ```html
