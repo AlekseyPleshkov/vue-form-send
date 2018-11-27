@@ -82,7 +82,6 @@ const Directive = {
   unbind (el, binding) {
     delete el.$validation
     delete el.$validationError
-    el.removeEventListener('input')
   }
 }
 
