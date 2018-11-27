@@ -4,6 +4,10 @@ const Directive = {
     let options = {
       // length or checked
       type: 'length',
+      // timeout hide error
+      timeoutError: 1200,
+      // realtime validaton
+      changeValidation: false,
       // replacing char
       replace: [],
       // cleaning input after success send
@@ -13,13 +17,27 @@ const Directive = {
     }
 
     options = Object.assign(options, binding.value)
-    
+
     // Add tag for cleaning input after full validation
     el.$clean = options.clean
+
+    // Validate if change value input
+    if (options.changeValidation) {
+      el.addEventListener('input', () => {
+        const validationResult = el.$validation()
+
+        if (!validationResult) {
+          el.$validationError()
+        }
+      })
+    }
 
     // Primitive validate
     el.$validation = () => {
       let value = el.value
+      
+      // Clear old error
+      el.classList.remove('error')
 
       // Replacing all char in value
       for (const char of options.replace) {
@@ -53,14 +71,18 @@ const Directive = {
     el.$validationError = () => {
       el.classList.add('error')
 
-      setTimeout(() => {
-        el.classList.remove('error')
-      }, 1500)
+      if (options.timeoutError > 0) {
+        setTimeout(() => {
+          el.classList.remove('error')
+        }, options.timeoutError)
+      }
     }
   },
 
   unbind (el, binding) {
     delete el.$validation
+    delete el.$validationError
+    el.removeEventListener('input')
   }
 }
 

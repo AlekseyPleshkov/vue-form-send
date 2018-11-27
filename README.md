@@ -29,6 +29,8 @@ Vue.use(VueFormSend)
   <input v-form-input='{length: 5}' name='phone' type='text' placeholder='Length > 5'/>
   <input v-form-input='{length: 5, replace: ["-", "/"]}' name='phone' type='text' placeholder='Length > 5 and replace'/>
   <input v-form-input='{length: 5, clean: true}' name='phone' type='text' placeholder='Length > 5 and clear'/>
+  <input v-form-input='{length: 5, timeoutError: 0, changeValidation: true}' name='phone' type='text' placeholder='Length > 5 and timeoutErorr 0'/>
+  <input v-form-input='{length: 5, changeValidation: true}' name='phone' type='text' placeholder='Length > 5 and changeValidation'/>
   <input v-form-input='{type: "checked"}' name='phone' type='checkbox'/> 
   <button>Send</button>
 </form>
@@ -50,4 +52,6 @@ Vue.use(VueFormSend)
 | length | Check length value of element |
 | replace | Replacing symbols from text value |
 | clear | Clear value after success send data |
+| timeoutError | Timeout for remove error class |
+| changeValidation | Real-time validaton if change input value |
 | type | Types of verification (length of checked). Default - length. |
