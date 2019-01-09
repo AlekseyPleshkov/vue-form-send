@@ -5,7 +5,9 @@ const Directive = {
       // Callback function if data success send
       success: () => {},
       // Callback function if data fail validation
-      fail: () => {}
+      fail: () => {},
+      // Cross
+      credentials: false
     }
 
     options = Object.assign(options, binding.value)
@@ -37,9 +39,11 @@ const Directive = {
 
       // Send request
       if (!existErrorValidation) {
-        let httpRequest = new XMLHttpRequest()
+        const XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+        const httpRequest = new XHR()
         httpRequest.open('POST', action)
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        httpRequest.withCredentials = options.credentials
         httpRequest.onload = () => {
           options.success(httpRequest, dataObj)
         }
