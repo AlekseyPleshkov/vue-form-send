@@ -1,6 +1,6 @@
 {
   "name": "vue-form-send",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Vue.js directive for sending data from form and primitive validation inputs",
   "main": "./dist/index.js",
   "author": "Aleksey Pleshkov",

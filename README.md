@@ -45,7 +45,7 @@ Vue.use(VueFormSend)
 | success | Function | Call function after success send data |
 | fail | Function | Call function is fail validation or send data |
 | credentials | Boolean | Use credentials
-| auth | Object(type: String, data: String) | User auth with type and data format username:password
+| auth | Function -> {type: String, data: String} | User auth. Return object with auth type and data string format username:password
 
 #### Element
 
