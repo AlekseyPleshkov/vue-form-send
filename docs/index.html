@@ -26,6 +26,14 @@
         <button type='submit'>Send</button>
       </form>
     </div>
+
+    <div class='block'>
+      <form v-form-send='{success: successResult, auth: {type: "Basic", data: "username:password"}}' class='form' action='http://localhost:8080/user/login' method='post'>
+        <input v-form-input='{length: 5}' name='username' type='text' placeholder='Length > 5'/>
+        <input v-form-input='{length: 5}' name='password' type='text' placeholder='Length > 5'/>
+        <button type='submit'>Send</button>
+      </form>
+    </div>
     
   </div>
 

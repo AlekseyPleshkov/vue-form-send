@@ -9,7 +9,7 @@ const Directive = {
       // Cross
       credentials: false,
       // User auth. Data - string in format "username:password"
-      auth: { type: 'bearer', data: null }
+      auth: { type: 'Basic', data: null }
     }
 
     options = Object.assign(options, binding.value)
@@ -49,9 +49,9 @@ const Directive = {
 
         // For user auth by typer
         if (options.auth.data !== null) {
-          const token = btoa(options.auth.data)
+          const token = `${options.auth.type} ${options.auth.data}`
 
-          httpRequest.setRequestHeader('Authorization', `${options.auth.type} ${token}`);
+          httpRequest.setRequestHeader('Authorization', token);
         }
 
         // Success
