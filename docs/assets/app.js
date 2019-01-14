@@ -13,7 +13,7 @@ new Vue({
       console.log('fail')
     },
     authData () {
-      const token = { type: 'Basic', data: `${this.username}:${this.password}`}
+      const token = { type: 'Basic', data: btoa(`${this.username}:${this.password}`)}
 
       return token
     }

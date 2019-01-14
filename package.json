@@ -1,6 +1,6 @@
 {
   "name": "vue-form-send",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Vue.js directive for sending data from form and primitive validation inputs",
   "main": "./dist/index.js",
   "author": "Aleksey Pleshkov",
@@ -10,7 +10,11 @@
     "url": "git+https://github.com/alekseypleshkov/vue-form-send"
   },
   "keywords": [
-    "vue", "form", "vue-form", "validation", "directive"
+    "vue",
+    "form",
+    "vue-form",
+    "validation",
+    "directive"
   ],
   "scripts": {
     "build:client": "webpack --config ./build/webpack.client.config.js --progress --hide-modules",
@@ -36,5 +40,8 @@
     "webpack": "4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "js-base64": "^2.5.0"
   }
 }
