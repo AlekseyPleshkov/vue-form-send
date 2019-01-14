@@ -49,7 +49,8 @@ const Directive = {
 
         // For user auth by typer
         if (options.auth.data !== null) {
-          const token = `${options.auth.type} ${options.auth.data}`
+          const params = binding.value
+          const token = `${params.auth.type} ${params.auth.data}`
 
           httpRequest.setRequestHeader('Authorization', token);
         }
