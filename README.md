@@ -40,18 +40,20 @@ Vue.use(VueFormSend)
 
 #### Form
 
-| Option | Description |
-| ------ | ------ |
-| success | Call function after success send data |
-| fail | Call function is fail validation or send data |
+| Option | Value type | Description |
+| ------ | ------ | ------ |
+| success | Function | Call function after success send data |
+| fail | Function | Call function is fail validation or send data |
+| credentials | Boolean | Use credentials
+| auth | Object(type: String, data: String) | User auth with type and data format username:password
 
 #### Element
 
-| Option | Description |
-| ------ | ------ |
-| length | Check length value of element |
-| replace | Replacing symbols from text value |
-| clear | Clear value after success send data |
-| timeoutError | Timeout for remove error class |
-| changeValidation | Real-time validaton if change input value |
-| type | Types of verification (length of checked). Default - length. |
+| Option | Value type | Description |
+| ------ | ------ | ------ |
+| length | Integer | Check length value of element |
+| replace | Boolean | Replacing symbols from text value |
+| clear | Boolean | Clear value after success send data |
+| timeoutError | Integer | Timeout for remove error class |
+| changeValidation | Boolean | Real-time validaton if change input value |
+| type | String | Types of verification (length of checked). Default - length. |

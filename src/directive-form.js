@@ -7,7 +7,9 @@ const Directive = {
       // Callback function if data fail validation
       fail: () => {},
       // Cross
-      credentials: false
+      credentials: false,
+      // User auth. Data - string in format "username:password"
+      auth: { type: 'bearer', data: null }
     }
 
     options = Object.assign(options, binding.value)
@@ -42,14 +44,27 @@ const Directive = {
         const XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
         const httpRequest = new XHR()
         httpRequest.open('POST', action)
-        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         httpRequest.withCredentials = options.credentials
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+        // For user auth by typer
+        if (options.auth.data !== null) {
+          const token = btoa(options.auth.data)
+
+          httpRequest.setRequestHeader('Authorization', `${options.auth.type} ${token}`);
+        }
+
+        // Success
         httpRequest.onload = () => {
           options.success(httpRequest, dataObj)
         }
+
+        // Error
         httpRequest.onerror = () => {
           options.fail(httpRequest, dataObj)
         }
+
+        // Send request
         httpRequest.send(data)
 
         // Cleaning input
