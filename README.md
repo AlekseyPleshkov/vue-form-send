@@ -42,6 +42,7 @@ Vue.use(VueFormSend)
 
 | Option | Value type | Description |
 | ------ | ------ | ------ |
+| pressButton | Function | Call function after click to form button |
 | success | Function | Call function after success send data |
 | fail | Function | Call function is fail validation or send data |
 | credentials | Boolean | Use credentials

@@ -2,6 +2,8 @@ const Directive = {
 
   bind(el, binding) {
     let options = {
+      // Callback function if press button
+      pressButton: () => {},
       // Callback function if data success send
       success: () => {},
       // Callback function if data fail validation
@@ -54,6 +56,9 @@ const Directive = {
 
           httpRequest.setRequestHeader('Authorization', token);
         }
+
+        // Press button event
+        options.pressButton(httpRequest, dataObj)
 
         // Success
         httpRequest.onload = () => {
